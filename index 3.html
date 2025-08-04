@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnoplan - Tenemos tu Nuevo Plan en Cuotas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            overflow-x: hidden;
+            background: #0a1628;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Tech circuit background */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2332 50%, #0f1419 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Animated circuit patterns */
+        .circuit-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            background-image: 
+                radial-gradient(circle at 20% 80%, #00d4ff 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #00d4ff 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, #00d4ff 0%, transparent 50%);
+            animation: circuitPulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes circuitPulse {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.4; }
+        }
+
+        /* Circuit line animations */
+        .circuit-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            height: 2px;
+            animation: circuitFlow 3s linear infinite;
+        }
+
+        .circuit-line:nth-child(1) {
+            top: 20%;
+            left: 0;
+            width: 300px;
+            animation-delay: 0s;
+        }
+
+        .circuit-line:nth-child(2) {
+            top: 60%;
+            right: 0;
+            width: 250px;
+            animation-delay: 1s;
+        }
+
+        .circuit-line:nth-child(3) {
+            top: 80%;
+            left: 30%;
+            width: 200px;
+            animation-delay: 2s;
+        }
+
+        @keyframes circuitFlow {
+            0% { opacity: 0; transform: translateX(-100px); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(100px); }
+        }
+
+        /* Circuit nodes */
+        .circuit-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00d4ff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #00d4ff;
+            animation: nodePulse 2s ease-in-out infinite;
+        }
+
+        .circuit-node:nth-child(4) { top: 15%; left: 10%; animation-delay: 0s; }
+        .circuit-node:nth-child(5) { top: 35%; right: 15%; animation-delay: 0.5s; }
+        .circuit-node:nth-child(6) { bottom: 20%; left: 20%; animation-delay: 1s; }
+        .circuit-node:nth-child(7) { bottom: 40%; right: 25%; animation-delay: 1.5s; }
+
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+            animation: slideInDown 1s ease-out;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .logo .tecno {
+            color: #00d4ff;
+        }
+
+        .logo .plan {
+            color: #ffffff;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            color: #00d4ff;
+            animation: slideInUp 1s ease-out 0.3s both;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-out 0.6s both;
+            line-height: 1.8;
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: #0a1628;
+            padding: 20px 45px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out 0.9s both;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+            background: linear-gradient(135deg, #33ddff, #00aadd);
+        }
+
+        /* Features section */
+        .features {
+            padding: 100px 0;
+            background: #0f1419;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+
+        .section-title .highlight {
+            color: #00d4ff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #1a2332, #0f1419);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: #0a1628;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        /* How it works section */
+        .how-it-works {
+            padding: 100px 0;
+            background: #0a1628;
+            position: relative;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: #0a1628;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 25px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .step-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Trust section */
+        .trust {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a2332, #0f1419);
+            text-align: center;
+            position: relative;
+        }
+
+        .trust::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+
+        .trust-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .trust-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .trust-description {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            line-height: 1.7;
+        }
+
+        .trust-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .trust-item:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        .trust-icon {
+            width: 24px;
+            height: 24px;
+            background: #00d4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a1628;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a1628;
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .contact-info {
+            margin-bottom: 40px;
+        }
+
+        .contact-title {
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: #00d4ff;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-icon {
+            color: #00d4ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo { font-size: 2.8rem; }
+            .tagline { font-size: 1rem; letter-spacing: 0.2em; }
+            .hero-description { font-size: 1.1rem; }
+            .section-title { font-size: 2.2rem; }
+            .trust-title { font-size: 2.2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+        }
+
+        /* Scroll animations */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="circuit-bg"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-node"></div>
+        <div class="circuit-node"></div>
+        <div class="circuit-node"></div>
+        <div class="circuit-node"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="logo-container">
+                    <h1 class="logo">
+                        <span class="tecno">tecno</span><span class="plan">PLAN</span>
+                    </h1>
+                    <p class="tagline">TENEMOS TU NUEVO PLAN EN CUOTAS</p>
+                </div>
+                <p class="hero-description">
+                    Especialistas en soluciones de pago para clientes KRECE.<br>
+                    Transformamos tus deudas pendientes en planes accesibles y personalizados.
+                </p>
+                <a href="#contacto" class="cta-button">Obtén tu Plan Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title scroll-fade">¿Por qué elegir <span class="highlight">Tecnoplan</span>?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card scroll-fade">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Tecnología Avanzada</h3>
+                    <p class="feature-description">
+                        Utilizamos algoritmos inteligentes para crear el plan de pagos 
+                        perfecto según tu capacidad financiera real.
+                    </p>
+                </div>
+                
+                <div class="feature-card scroll-fade">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">100% Personalizado</h3>
+                    <p class="feature-description">
+                        Cada plan se diseña específicamente para tu situación. 
+                        No hay soluciones genéricas, solo planes que funcionan para ti.
+                    </p>
+                </div>
+                
+                <div class="feature-card scroll-fade">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Proceso Seguro</h3>
+                    <p class="feature-description">
+                        Manejo confidencial de tu información con los más altos 
+                        estándares de seguridad y protección de datos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title scroll-fade">Cómo <span class="highlight">funciona</span></h2>
+            
+            <div class="steps">
+                <div class="step scroll-fade">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Análisis Inicial</h3>
+                    <p class="step-description">
+                        Nuestro equipo contacta contigo para entender tu situación 
+                        específica con KRECE y evaluar tus necesidades.
+                    </p>
+                </div>
+                
+                <div class="step scroll-fade">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Plan Personalizado</h3>
+                    <p class="step-description">
+                        Diseñamos un plan de cuotas que se ajuste perfectamente 
+                        a tu capacidad de pago y calendario financiero.
+                    </p>
+                </div>
+                
+                <div class="step scroll-fade">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Implementación</h3>
+                    <p class="step-description">
+                        Activamos tu nuevo plan y te acompañamos durante todo 
+                        el proceso hasta completar tus pagos exitosamente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="container">
+            <div class="trust-content scroll-fade">
+                <h2 class="trust-title">Confianza y <span class="highlight">Transparencia</span></h2>
+                <p class="trust-description">
+                    En Tecnoplan entendemos que cada situación financiera es única. 
+                    Por eso trabajamos with total transparencia y compromiso para ofrecerte 
+                    las mejores condiciones posibles.
+                </p>
+                
+                <div class="trust-features">
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <span>Sin costos ocultos</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <span>Proceso 100% transparente</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <span>Atención personalizada</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <span>Soluciones flexibles</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="contact-info">
+                <h3 class="contact-title">¿Listo para tu nuevo plan en cuotas?</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>info@tecnoplan.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🕒</span>
+                    <span>Lunes a Viernes, 9:00 - 18:00</span>
+                </div>
+            </div>
+            <p style="opacity: 0.7; border-top: 1px solid rgba(0, 212, 255, 0.2); padding-top: 30px; margin-top: 30px;">
+                © 2025 <span style="color: #00d4ff;">tecno</span>PLAN - Tenemos tu nuevo plan en cuotas
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-fade elements
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for CTA button
+        document.querySelector('.cta-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('#contacto').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Add subtle parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Random circuit node animation
+        setInterval(() => {
+            const nodes = document.querySelectorAll('.circuit-node');
+            const randomNode = nodes[Math.floor(Math.random() * nodes.length)];
+            randomNode.style.boxShadow = '0 0 25px #00d4ff';
+            setTimeout(() => {
+                randomNode.style.boxShadow = '0 0 15px #00d4ff';
+            }, 500);
+        }, 2000);
+    </script>
+</body>
+</html>
